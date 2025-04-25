@@ -1,7 +1,7 @@
 # requirements.txt
 # 依赖列表
 yt-dlp
-faster-whisper
+#faster-whisper
 Flask
 Flask-SQLAlchemy
 # torch (midnight版) 需手动安装，见下说明
