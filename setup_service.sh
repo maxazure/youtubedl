@@ -7,7 +7,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # 设置变量
-APP_DIR="/opt/youtubedl"
+APP_DIR="/home/user/projects/youtubedl"
 SERVICE_NAME="youtubedl"
 SERVICE_USER="youtubedl"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
