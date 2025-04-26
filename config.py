@@ -7,6 +7,11 @@ import os
 # Base directory of the application
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Server configuration
+PORT = int(os.environ.get('YOUTUBEDL_PORT', 5000))
+HOST = os.environ.get('YOUTUBEDL_HOST', '0.0.0.0')
+DEBUG = os.environ.get('YOUTUBEDL_DEBUG', 'False').lower() in ('true', '1', 't')
+
 # Database configuration
 # 使用绝对路径指向数据库文件
 SQLALCHEMY_DATABASE_URI = f'sqlite:///{os.path.join(BASE_DIR, "youtube_tasks.db")}'
