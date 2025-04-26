@@ -56,10 +56,6 @@ echo "安装Python依赖"
 pip install --upgrade pip
 pip install -r $APP_DIR/requirements.txt
 
-# 安装PyTorch（如果需要）
-echo "安装PyTorch"
-pip install --pre torch --index-url https://download.pytorch.org/whl/nightly/cu128
-
 # 初始化数据库
 echo "初始化数据库"
 cd $APP_DIR
