@@ -12,6 +12,7 @@ YouTube Downloader Flask Application - Main Entry Point
 
 import os
 from flask import Flask
+from flask_cors import CORS
 from models import db
 from routes import register_blueprints
 import config
@@ -19,6 +20,9 @@ import config
 def create_app():
     """Create and configure the Flask application"""
     app = Flask(__name__)
+    
+    # 启用CORS，允许跨域请求 - 特别是允许Chrome扩展
+    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
     
     # 加载配置
     app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
@@ -49,6 +53,14 @@ def create_app():
     
     # 注册蓝图
     register_blueprints(app)
+    
+    # 添加CORS响应头
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
     
     return app
 

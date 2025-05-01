@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube下载助手设置</title>
+  <style>
+    body {
+      width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 15px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>YouTube下载助手设置</h1>
+  
+  <div class="form-group">
+    <label for="serverUrl">服务器地址</label>
+    <input type="text" id="serverUrl" placeholder="例如: http://localhost:5000">
+    <p>请填写完整的服务器地址，不要在末尾添加斜杠 "/"</p>
+  </div>
+  
+  <div class="form-group">
+    <button id="saveButton">保存设置</button>
+    <button id="testButton">测试连接</button>
+  </div>
+  
+  <div id="status" class="status" style="display: none;"></div>
+  
+  <script src="options.js"></script>
+</body>
+</html>

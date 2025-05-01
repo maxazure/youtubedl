@@ -1,0 +1,6 @@
+/* 这是一个Base64编码的图标文件，用于演示。您可以稍后替换为您自己的图标。
+此SVG图标是一个简单的下载按钮形状，具有YouTube红色背景。
+*/
+
+// 图标使用Base64数据URL的形式，请将此文件重命名为icon.js后引入到扩展中
+const iconDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij48cmVjdCB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgcng9IjgiIHJ5PSI4IiBmaWxsPSIjZmYwMDAwIi8+PHBhdGggZD0iTTY0LDMwdjQwTTQ0LDUwbDIwLDIwbDIwLTIwTTM0LDgwaDYwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOCIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==';

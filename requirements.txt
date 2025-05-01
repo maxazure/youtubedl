@@ -3,6 +3,7 @@
 yt-dlp
 #faster-whisper
 Flask
+flask-cors
 Flask-SQLAlchemy
 # torch (midnight版) 需手动安装，见下说明
 # 安装torch午夜版（midnight）命令：
