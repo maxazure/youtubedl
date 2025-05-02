@@ -7,7 +7,10 @@ from models import db, SubtitleContent, TaskRequest
 from datetime import datetime, UTC
 import threading
 import os
-from utils import process_video_task, has_new_tasks
+from utils import process_video_task
+
+# 在模块级别定义全局变量
+tasks_available = False
 
 main = Blueprint('main', __name__)
 
@@ -21,6 +24,7 @@ def index():
 @main.route('/submit', methods=['POST'])
 def submit_task():
     """提交新的下载任务请求"""
+    global tasks_available
     youtube_url = request.form.get('youtube_url')
     
     if not youtube_url:
@@ -45,8 +49,7 @@ def submit_task():
             db.session.commit()
             
             # 设置全局有新任务标志
-            global has_new_tasks
-            has_new_tasks = True
+            tasks_available = True
             
             return jsonify({
                 'status': 'success',
@@ -76,8 +79,7 @@ def submit_task():
     db.session.commit()
     
     # 设置全局有新任务标志
-    global has_new_tasks
-    has_new_tasks = True
+    tasks_available = True
     
     return jsonify({
         'status': 'success', 
