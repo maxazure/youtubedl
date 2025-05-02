@@ -67,6 +67,41 @@ def add_task():
     if not youtube_url:
         return jsonify({'error': '缺少必要参数'}), 400
     
+    # 检查是否存在相同URL的任务请求
+    existing_task = TaskRequest.query.filter_by(youtube_url=youtube_url).first()
+    if existing_task:
+        # 如果任务存在但已失败，可以考虑允许重新提交
+        if existing_task.status == 'failed':
+            existing_task.status = 'pending'
+            existing_task.client_id = None
+            existing_task.processed_at = None
+            
+            # 重新创建一个下载任务记录
+            new_task = SubtitleContent(youtube_url=youtube_url)
+            db.session.add(new_task)
+            db.session.commit()
+            
+            # 关联新的下载任务ID
+            existing_task.result_task_id = new_task.id
+            db.session.commit()
+            
+            # 设置全局有新任务标志
+            has_new_tasks = True
+            
+            return jsonify({
+                'status': 'success',
+                'message': '失败任务已重新提交',
+                'task_id': new_task.id
+            })
+        else:
+            # 返回错误，告知URL已存在
+            return jsonify({
+                'status': 'error',
+                'message': '相同URL的任务已存在',
+                'existing_task_id': existing_task.id,
+                'existing_task_status': existing_task.status
+            }), 409
+    
     # 创建新任务请求
     new_task_request = TaskRequest(youtube_url=youtube_url)
     db.session.add(new_task_request)
