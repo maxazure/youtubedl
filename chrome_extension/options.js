@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 加载保存的服务器地址
   chrome.storage.sync.get(['serverUrl'], function(result) {
-    serverUrlInput.value = result.serverUrl || 'http://localhost:5000';
+    serverUrlInput.value = result.serverUrl || 'http://192.168.31.205:8871/api';
   });
   
   // 保存设置
